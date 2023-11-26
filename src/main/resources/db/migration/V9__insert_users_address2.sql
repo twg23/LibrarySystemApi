@@ -1,0 +1,3 @@
+INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES ( 1,'43 Jenson street', 'Nottingham', 'NG6 5TY','UK' );
+INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES ( 2,'65 Broadson street', 'Nottingham', 'NG8 9TY','UK' );
+INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES ( 3,'73 Rhysen street', 'Nottingham', 'NG76OY','UK' );
