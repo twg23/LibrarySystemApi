@@ -9,8 +9,15 @@ import lombok.Data;
 @Data
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private  int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
+    @SequenceGenerator(
+            name = "genre_seq",
+            sequenceName = "genre_seq",
+            initialValue = 1,
+            allocationSize = 1
+
+    )
+    private  Long id;
     private String title;
 
     @ManyToOne
@@ -18,7 +25,10 @@ public class Book {
     private Author author;
 
 
-    private Genre Genre;
+    @OneToOne
+    @JoinColumn(name ="genre_id", referencedColumnName = "id",nullable = false )
+    private Genre genre;
 
 
 }
+

@@ -19,7 +19,7 @@ public class Author {
             allocationSize = 1
 
     )
-    private  int id;
+    private  Long id;
     private String name;
 
     @OneToMany(mappedBy = "author")

@@ -2,9 +2,12 @@ package com.barclays.LibrarySystemAPI.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "genre")
+@Entity
+@Table(name = "genre")
 @Data
+@NoArgsConstructor
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
