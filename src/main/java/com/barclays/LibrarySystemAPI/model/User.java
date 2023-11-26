@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@Entity (name = "user_t")
+@Entity
+@Table(name = "user_t")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id
@@ -28,4 +28,16 @@ public class User {
     private Address address;
     private String phoneNumber;
     private String email;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public User(Long id, String name, @NonNull Address address, String phoneNumber, String email) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }
