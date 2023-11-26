@@ -7,22 +7,22 @@ import lombok.NonNull;
 import java.util.List;
 
 
-//@Entity
-//@Data
-////public class Author {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq")
-//    @SequenceGenerator(
-//            name = "author_seq",
-//            sequenceName = "author_seq",
-//            initialValue = 1,
-//            allocationSize = 1
-//
-//    )
-//    private  int id;
-//    private String name;
-//
-//    @OneToMany(mappedBy = "author")
-//    private List<Book> books;
-//}
+@Entity
+@Data
+public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq")
+    @SequenceGenerator(
+            name = "author_seq",
+            sequenceName = "author_seq",
+            initialValue = 1,
+            allocationSize = 1
+
+    )
+    private  int id;
+    private String name;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
+}
 
