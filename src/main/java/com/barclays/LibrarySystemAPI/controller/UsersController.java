@@ -41,7 +41,7 @@ public class UsersController {
        return userService.save(user);
     }
 
-    @GetMapping(value = "/user/name")
+    @GetMapping(value = "user/search")
     public List<User> getUser(@PathParam("name") String name) {
         List<User> user = Collections.emptyList();
         if(StringUtils.isNotBlank(name)) {
@@ -57,7 +57,7 @@ public class UsersController {
 
 
     @DeleteMapping("delete/{id}")
-    public void deleteUser(Long id){
+    public void deleteUser(@PathVariable Long id){
        userService.deleteUser(id);
 
     }
