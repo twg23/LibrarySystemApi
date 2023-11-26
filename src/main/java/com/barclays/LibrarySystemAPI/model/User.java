@@ -28,4 +28,8 @@ public class User {
     private Address address;
     private String phoneNumber;
     private String email;
+
+    public User(String name) {
+        this.name = name;
+    }
 }

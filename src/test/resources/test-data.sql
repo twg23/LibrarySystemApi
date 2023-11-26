@@ -1,0 +1,6 @@
+INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES ( 1,'43 Jenson street', 'Nottingham', 'NG6 5TY','UK' );
+INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES ( 2,'65 Broadson street', 'Nottingham', 'NG8 9TY','UK' );
+INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES ( 3,'73 Rhysen street', 'Nottingham', 'NG76OY','UK' );
+    INSERT INTO USER_T (ID, NAME, PHONE_NUMBER,EMAIL, ADDRESS_ID) VALUES ( 1,'Tolu Adetomiwa','07347284950', 'toluadetomiwa@gmail.com',1 );
+INSERT INTO USER_T (ID, NAME, PHONE_NUMBER,EMAIL,  ADDRESS_ID) VALUES ( 2,'Tise Oludayomi','07347583840', 'tiseoludayomi@gmail.com',2);
+INSERT INTO USER_T (ID, NAME, PHONE_NUMBER,EMAIL, ADDRESS_ID) VALUES ( 3,'Dami Bankole','07347254780', 'damibankole@gmail.com',3 );
