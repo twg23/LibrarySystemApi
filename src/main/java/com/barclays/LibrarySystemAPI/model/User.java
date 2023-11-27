@@ -6,9 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user_t")
-@Data§
+@Data
 @NoArgsConstructor
 public class User {
     @Id
@@ -28,6 +30,8 @@ public class User {
     private Address address;
     private String phoneNumber;
     private String email;
+    @OneToMany(mappedBy = "user")
+    private List<Booking> booking;
 
     public User(String name) {
         this.name = name;

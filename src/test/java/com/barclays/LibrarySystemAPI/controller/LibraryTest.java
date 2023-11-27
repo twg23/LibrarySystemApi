@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
-class UsersControllerTest {
+class LibraryTest {
 
     @Autowired
     MockMvc mockMvc;

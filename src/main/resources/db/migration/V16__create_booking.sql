@@ -1,0 +1,17 @@
+    CREATE TABLE IF NOT EXISTS BOOKINGS
+    (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    book_id BIGINT NOT NULL,
+    date  VARCHAR(255),
+    period INT NOT NULL,
+    user_id BIGINT NOT NULL
+);
+
+    CREATE SEQUENCE booking_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999
+    CYCLE;
+
+    INSERT INTO BOOKINGS (ID, book_id, date, period,user_id) VALUES ( NEXTVAL('booking_seq'), 3, '30/10/2023',7,3);

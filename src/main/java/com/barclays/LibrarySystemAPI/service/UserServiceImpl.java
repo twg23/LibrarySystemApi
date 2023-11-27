@@ -1,57 +1,69 @@
 package com.barclays.LibrarySystemAPI.service;
 
-import com.barclays.LibrarySystemAPI.exception.IdNotFoundException;
-import com.barclays.LibrarySystemAPI.model.User;
-import com.barclays.LibrarySystemAPI.repository.UserRepository;
+import com.barclays.LibrarySystemAPI.dto.BookResponse;
+import com.barclays.LibrarySystemAPI.model.Book;
+import com.barclays.LibrarySystemAPI.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-
-   private UserRepository userRepository;
-
-   @Override
-   public List<User> findAllUsers(){
-      List<User> users = new ArrayList<>();
-      userRepository.findAll().forEach(users ::add);
-      return users;
-   }
-
-   @Override
-   public User findUserById(Long id){
-      Optional<User> user= userRepository.findById(id);
-      return user.orElseThrow(()->new IdNotFoundException("Id not found "));
-   }
+    /**
+     * - search by author
+     * search by title
+     * search by genre
+     */
 
 
-   @Override
-   public User save(User user){
-      return userRepository.save(user);
-   }
+    private BookRepository bookRepository;
+    @Override
+    public BookResponse searchByTitle(String title){
+        BookResponse response = new BookResponse();
+        Book book= bookRepository.searchByTitle(title);
+        response.setTitle(book.getTitle());
+        response.setId(book.getId());
+        response.setGenre(book.getGenre());
+        response.setAuthor(List.of(book.getAuthor()));
+        response.setAvailable(book.isAvailable());
 
-   @Override
-   public void deleteUser(Long id){
-
-     User user = userRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
-       userRepository.deleteById(user.getId());
-
-   }
-
-   @Override
-   public List<User> searchByName(String name){
-      return userRepository.searchByName(name);
+        return response;
    }
 
 
+//    public Book searchByTitle(String title){
+//        BookResponse response = new BookResponse();
+//        return bookRepository.searchByTitle(title);
+//    }
 
-   @Autowired
-   public UserServiceImpl(UserRepository userRepository) {
-      this.userRepository = userRepository;
-   }
+    @Override
+    public List<Book> findAllBooks(){
+        List<Book> bookList = new ArrayList<>();
+        bookRepository.findAll().forEach(bookList :: add);
+        return bookList;
+      //  return bookRepository.findAll();
+    }
+
+
+    @Override
+    public List<Book> searchByAuthor(String authorName){
+        return bookRepository.searchByAuthorContaining(authorName);
+    }
+
+    @Override
+    public List<Book> searchByGenre(String genre){
+        return bookRepository.searchByGenreContains(genre);
+    }
+
+
+
+
+
+    @Autowired
+    public UserServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 }

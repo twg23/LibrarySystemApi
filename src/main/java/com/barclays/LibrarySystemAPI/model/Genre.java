@@ -1,6 +1,7 @@
 package com.barclays.LibrarySystemAPI.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "genre")
 @Data
 @NoArgsConstructor
+
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
@@ -20,12 +22,9 @@ public class Genre {
     )
     private  Long id;
     private String bookGenre;
-//    private String historical;
-//    private String  fantasy;
-//    private String  romance;
-//    private String fiction;
-//    private String science;
-//    private String children;
 
-
+    public Genre(Long id, String bookGenre) {
+        this.id = id;
+        this.bookGenre = bookGenre;
+    }
 }

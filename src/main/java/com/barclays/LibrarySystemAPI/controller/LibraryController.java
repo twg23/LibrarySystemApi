@@ -3,6 +3,7 @@ package com.barclays.LibrarySystemAPI.controller;
 import com.barclays.LibrarySystemAPI.exception.IdNotFoundException;
 import com.barclays.LibrarySystemAPI.model.User;
 import com.barclays.LibrarySystemAPI.repository.UserRepository;
+import com.barclays.LibrarySystemAPI.service.LibraryService;
 import com.barclays.LibrarySystemAPI.service.UserService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
@@ -15,41 +16,41 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UsersController {
+public class LibraryController {
 
-    private UserService userService;
+    private LibraryService libraryService;
     private UserRepository userRepository;
 
     @Autowired
-    public UsersController(UserService userService, UserRepository userRepository) {
-        this.userService = userService;
+    public LibraryController(LibraryService libraryService, UserRepository userRepository) {
+        this.libraryService = libraryService;
         this.userRepository = userRepository;
     }
 
     @GetMapping(value = "/user")
     public List<User> findAllUsers(){
-       return userService.findAllUsers();
+       return libraryService.findAllUsers();
     }
 
     @GetMapping( "/user/{id}")
     public User findUserById(@PathVariable  Long id){
-       return userService.findUserById(id);
+       return libraryService.findUserById(id);
     }
 
     @PostMapping("/create")
     public User createUser(@RequestBody User user){
-       return userService.save(user);
+       return libraryService.save(user);
     }
 
     @GetMapping(value = "user/search")
     public List<User> getUser(@PathParam("name") String name) {
         List<User> user = Collections.emptyList();
         if(StringUtils.isNotBlank(name)) {
-            user = userService.searchByName(name);
+            user = libraryService.searchByName(name);
 
         }
         else {
-            user = userService.findAllUsers();
+            user = libraryService.findAllUsers();
         }
 
         return user;
@@ -58,9 +59,11 @@ public class UsersController {
 
     @DeleteMapping("delete/{id}")
     public void deleteUser(@PathVariable Long id){
-       userService.deleteUser(id);
+        libraryService.deleteUser(id);
 
     }
+
+
 
 
 

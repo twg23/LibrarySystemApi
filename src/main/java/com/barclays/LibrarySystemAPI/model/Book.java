@@ -1,18 +1,22 @@
 package com.barclays.LibrarySystemAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
+@Table(name = "book")
+@NoArgsConstructor
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     @SequenceGenerator(
-            name = "genre_seq",
-            sequenceName = "genre_seq",
+            name = "book_seq",
+            sequenceName = "book_seq",
             initialValue = 1,
             allocationSize = 1
 
@@ -20,7 +24,9 @@ public class Book {
     private  Long id;
     private String title;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JsonIgnore
+   // @JsonBackReference
     @JoinColumn(name ="author_id", referencedColumnName = "id", nullable = false)
     private Author author;
 
@@ -29,6 +35,14 @@ public class Book {
     @JoinColumn(name ="genre_id", referencedColumnName = "id",nullable = false )
     private Genre genre;
 
+    private boolean isAvailable;
 
+    public Book(Long id, String title, Author author, Genre genre, boolean isAvailable) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.isAvailable = isAvailable;
+    }
 }
 
