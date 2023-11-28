@@ -21,23 +21,11 @@ public class UserServiceImpl implements UserService {
 
     private BookRepository bookRepository;
     @Override
-    public BookResponse searchByTitle(String title){
-        BookResponse response = new BookResponse();
-        Book book= bookRepository.searchByTitle(title);
-        response.setTitle(book.getTitle());
-        response.setId(book.getId());
-        response.setGenre(book.getGenre());
-        response.setAuthor(List.of(book.getAuthor()));
-        response.setAvailable(book.isAvailable());
-
-        return response;
+    public Book searchByTitle(String title){
+        return bookRepository.searchByTitle(title);
    }
 
 
-//    public Book searchByTitle(String title){
-//        BookResponse response = new BookResponse();
-//        return bookRepository.searchByTitle(title);
-//    }
 
     @Override
     public List<Book> findAllBooks(){

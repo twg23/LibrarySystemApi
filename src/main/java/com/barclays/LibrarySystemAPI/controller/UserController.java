@@ -4,9 +4,11 @@ import com.barclays.LibrarySystemAPI.exception.TitleNotFoundException;
 import com.barclays.LibrarySystemAPI.model.Book;
 import com.barclays.LibrarySystemAPI.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -17,28 +19,34 @@ public class UserController {
 
 
 
-    @GetMapping(value = "/title")
-    public Book searchByTitle(@RequestParam("title") String title) {
-        Book book= userService.searchByTitle(title);
-        if (book == null){
-            throw new TitleNotFoundException("Title not found exception");
-        }
-        return book;
+//    @GetMapping(value = "/title")
+//    public Book searchByTitle(@RequestParam("title") String title) {
+//        List<Book> books = Collections.emptyList();
+//        if(StringUtils.isNotBlank(title)) {
+//            books =userService.searchByTitle(title);
+//        }
+//        else {
+//           books= userService.findAllBooks();
+//        }
+//
+//        return books;
+//    }
 
-    }
+
+
 
     @GetMapping("/books")
     public List<Book> findAllBooks(){
         return userService.findAllBooks();
     }
     @GetMapping("/author")
-    public List<Book> searchByAuthor(@RequestParam("name") String name){
-        return userService.searchByAuthor(name);
+    public List<Book> searchByAuthor(@RequestParam("name") String authorName){
+        return userService.searchByAuthor(authorName);
     }
 
 
     @GetMapping("/genre")
-    public List<Book> searchByGenre(@RequestParam("genre")String genre){
+    public List<Book> searchByGenre(String genre){
         return userService.searchByGenre(genre);
     }
 

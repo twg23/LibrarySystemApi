@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
    // Book searchByTitle(String title);
-    BookResponse searchByTitle(String title);
+    Book searchByTitle(String title);
 
     List<Book> findAllBooks();
 
