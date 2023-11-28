@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class MovieController {
+
     MovieService movieService;
     @GetMapping("/movie/title")
     public Movie searchMovieByTitle(@PathParam("title") String title){

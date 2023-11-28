@@ -22,9 +22,13 @@ public class Genre {
     )
     private  Long id;
     private String bookGenre;
+    private String movieGenre;
+
 
     public Genre(Long id, String bookGenre) {
         this.id = id;
         this.bookGenre = bookGenre;
     }
+
+
 }

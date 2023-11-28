@@ -13,7 +13,7 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
      Movie searchMovieByTitle(String title);
 
     List<Movie> searchMovieByAuthorContaining(String author);
-     List<Movie> searchMovieByGenre(String genre);
+     List<Movie> searchMovieByGenre(String genreName);
 
 
 
