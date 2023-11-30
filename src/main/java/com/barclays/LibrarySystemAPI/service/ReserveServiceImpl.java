@@ -10,11 +10,13 @@ import com.barclays.LibrarySystemAPI.repository.ItemRepository;
 import com.barclays.LibrarySystemAPI.repository.ReserveRepository;
 import com.barclays.LibrarySystemAPI.repository.UserRepository;
 import io.micrometer.common.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@Slf4j
 public class ReserveServiceImpl implements ReserveService {
 
      ItemRepository itemRepository;
@@ -30,15 +32,15 @@ public class ReserveServiceImpl implements ReserveService {
          if not throw a id not found exception
 */
 
+        log.debug("reserve dto " + reserveDTO.getTitle());
+        log.debug("reserve dto " + reserveDTO.getItemType());
+
         Item item =  itemRepository.findByItemTypeAndItemTitle(
                 reserveDTO.getItemType(),
                 reserveDTO.getTitle());
         if (item == null) {
             throw  new ItemNotFoundException("Item not found: " + reserveDTO.getItemType() +  reserveDTO.getTitle());
         }
-
-
-
 
         User user = userRepository.findById(reserveDTO.getId()).
                 orElseThrow(()-> new IdNotFoundException( "User ID not found exception"));
@@ -50,7 +52,8 @@ public class ReserveServiceImpl implements ReserveService {
         reservedItem.setItem(item);
         reservedItem.setDate(reserveDTO.getDate());
         reservedItem.setPeriod(7);
-        reservedItem.setId(user.getId());
+        reservedItem.setUser(user);
+        log.debug(String.valueOf(reservedItem.getId()));
 
         return reserveRepository.save(reservedItem);
 

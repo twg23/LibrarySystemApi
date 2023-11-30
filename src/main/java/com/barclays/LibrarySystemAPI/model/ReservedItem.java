@@ -17,7 +17,7 @@ public class ReservedItem {
     @SequenceGenerator(
             name = "reserved_seq",
             sequenceName = "reserved_seq",
-            initialValue = 1,
+            initialValue = 100,
             allocationSize = 1
 
     )
