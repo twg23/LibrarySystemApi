@@ -1,7 +1,6 @@
 package com.barclays.LibrarySystemAPI.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -31,7 +30,7 @@ public class User {
     private String phoneNumber;
     private String email;
     @OneToMany(mappedBy = "user")
-    private List<Booking> booking;
+    private List<ReservedItem> reservedItem;
 
     public User(String name) {
         this.name = name;

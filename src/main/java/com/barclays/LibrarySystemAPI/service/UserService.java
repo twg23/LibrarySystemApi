@@ -1,17 +1,20 @@
 package com.barclays.LibrarySystemAPI.service;
 
-import com.barclays.LibrarySystemAPI.dto.BookResponse;
-import com.barclays.LibrarySystemAPI.model.Book;
+import com.barclays.LibrarySystemAPI.dto.UserRequestDTO;
+import com.barclays.LibrarySystemAPI.model.User;
 
 import java.util.List;
 
 public interface UserService {
-   // Book searchByTitle(String title);
-    Book searchByTitle(String title);
+    List<User> findAllUsers();
 
-    List<Book> findAllBooks();
+    User findUserById(Long id);
 
-    List<Book> searchByAuthor(String authorName);
+    User save(UserRequestDTO userDTO);
 
-    List<Book> searchByGenre(String genre);
+    void deleteUser(Long id);
+
+    List<User> searchByName(String name);
+
+    User updateUser(User user);
 }

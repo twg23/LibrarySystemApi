@@ -5,30 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "genre")
-@Data
-@NoArgsConstructor
-
-public class Genre {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
-    @SequenceGenerator(
-            name = "genre_seq",
-            sequenceName = "genre_seq",
-            initialValue = 1,
-            allocationSize = 1
-
-    )
-    private  Long id;
-    private String bookGenre;
-    private String movieGenre;
+import javax.swing.*;
 
 
-    public Genre(Long id, String bookGenre) {
-        this.id = id;
-        this.bookGenre = bookGenre;
-    }
-
-
+public enum Genre {
+    FICTION,
+    ROMANCE,
+    ACTION,
+    SCIENTIFIC,
+    THRILLER
 }

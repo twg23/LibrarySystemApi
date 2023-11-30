@@ -24,15 +24,13 @@ public class Book {
     private  Long id;
     private String title;
 
-    @ManyToOne (fetch = FetchType.LAZY)
-   // @JsonIgnore
+    @ManyToOne (fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinColumn(name ="author_id", referencedColumnName = "id", nullable = false)
     private Author author;
 
 
-    @OneToOne
-    @JoinColumn(name ="genre_id", referencedColumnName = "id",nullable = false )
+    @Enumerated(EnumType.STRING)
     private Genre genre;
 
     private boolean isAvailable;

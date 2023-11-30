@@ -29,8 +29,7 @@ public class Movie {
     private String releaseDate;
     private boolean isAvailable;
 
-    @OneToOne
-    @JoinColumn(name ="genre_id", referencedColumnName = "id",nullable = false )
+    @Enumerated(EnumType.STRING)
     private Genre genre;
     private double rating;
 }

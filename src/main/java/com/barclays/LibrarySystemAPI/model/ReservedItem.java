@@ -5,28 +5,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name = "bookings")
+@Table(name = "reservedItem")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Booking {
+public class ReservedItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserved_seq")
     @SequenceGenerator(
-            name = "booking_seq",
-            sequenceName = "booking_seq",
+            name = "reserved_seq",
+            sequenceName = "reserved_seq",
             initialValue = 1,
             allocationSize = 1
 
     )
     private Long id;
+    @Enumerated(EnumType.STRING)
+    ItemType  itemType;
     @OneToOne
-    @JoinColumn(name ="book_id", referencedColumnName = "id",nullable = false )
-    private Book book;
+    @JoinColumn(name ="item_id", referencedColumnName = "id",nullable = false )
+    private Item item;
     private String date;
     private int period;
     @ManyToOne
