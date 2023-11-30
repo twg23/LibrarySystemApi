@@ -25,13 +25,13 @@ public class Item {
     ItemType  itemType;
 
     private  String itemTitle;
-//    @OneToOne
-//    @JoinColumn(name ="book_id", referencedColumnName = "id",nullable = false )
-//    private Book book;
-//    @OneToOne
-//    @JoinColumn(name ="movie_id", referencedColumnName = "id",nullable = false )
-//    private Movie movie;
-//
+    @OneToOne
+    @JoinColumn(name ="book_id", referencedColumnName = "id",nullable = false )
+    private Book book;
+    @OneToOne
+    @JoinColumn(name ="movie_id", referencedColumnName = "id",nullable = false )
+    private Movie movie;
+
 
 
 }
