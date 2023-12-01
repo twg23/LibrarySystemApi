@@ -1,17 +1,17 @@
-INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available) VALUES ( 3000, 'Inception', 'Leonardo DiCaprio, Ellen Page', 'Christopher Nolan', 'Christopher Nolan','2010-07-16', 'FICTION', 8.8,true );
-INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available) VALUES ( 3100, 'The Shawshank Redemption', 'Tim Robbins, Morgan Freeman', 'Frank Darabont ', 'Frank Darabont','1994-09-23', 'ROMANCE', 9.3,true );
-INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available) VALUES ( 3300, 'Pulp Fiction ', 'John Travolta, Uma Thurman', 'Quentin Tarantino ', 'Quentin Tarantino','2008-07-18', 'ACTION' , 7.5, false );
-INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available) VALUES (4400, 'The Godfather ', 'Marlon Brando, Al Pacino ', 'Francis Ford Coppola  ', 'Mario Puzo','1972-03-24', 'ROMANCE' , 5,true );
+INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available,quantity) VALUES ( 3000, 'Inception', 'Leonardo DiCaprio, Ellen Page', 'Christopher Nolan', 'Christopher Nolan','2010-07-16', 'FICTION', 8.8,true ,2);
+INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available,quantity) VALUES ( 3100, 'The Shawshank Redemption', 'Tim Robbins, Morgan Freeman', 'Frank Darabont ', 'Frank Darabont','1994-09-23', 'ROMANCE', 9.3,true,3 );
+INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available,quantity) VALUES ( 3300, 'Pulp Fiction', 'John Travolta, Uma Thurman', 'Quentin Tarantino ', 'Quentin Tarantino','2008-07-18', 'ACTION' , 7.5, false,4 );
+INSERT INTO MOVIE (ID, title,lead_actors, director,screen_writer,release_date,genre,rating,is_available,quantity) VALUES (4400, 'The Godfather', 'Marlon Brando, Al Pacino ', 'Francis Ford Coppola  ', 'Mario Puzo','1972-03-24', 'ROMANCE' , 5,true ,7);
 
 INSERT INTO AUTHOR (ID, name) VALUES ( 1, 'Wole Shoyinka' );
 INSERT INTO AUTHOR (ID, name) VALUES (2, 'Tolani Shoneye' );
 INSERT INTO AUTHOR (ID, name) VALUES ( 3, 'Lani Good' );
 INSERT INTO AUTHOR (ID, name) VALUES ( 4, 'Milena Sanchez' );
 
-INSERT INTO BOOK (ID, title, author_id, genre,is_available) VALUES ( 500, 'Mary had a little lamb',1 , 'FICTION',true);
-INSERT INTO BOOK (ID, title, author_id, genre,is_available) VALUES ( 600, 'Blah Blah sheep',2 , 'THRILLER',true);
-INSERT INTO BOOK (ID, title, author_id, genre, is_available) VALUES ( 700, 'Upon the old solid rock',3, 'ACTION',true);
-INSERT INTO BOOK (ID, title, author_id, genre,is_available) VALUES ( 800, 'Mirror Mirror',1 , 'FICTION',true);
+INSERT INTO BOOK (ID, title, author_id, genre,quantity,is_available) VALUES ( 500, 'Mary had a little lamb',1 , 'FICTION',3,true);
+INSERT INTO BOOK (ID, title, author_id, genre,quantity,is_available) VALUES ( 600, 'Blah Blah sheep',2 , 'THRILLER',4,true);
+INSERT INTO BOOK (ID, title, author_id, genre, quantity,is_available) VALUES ( 700, 'Upon the old solid rock',3, 'ACTION',3,true);
+INSERT INTO BOOK (ID, title, author_id, genre,quantity,is_available) VALUES ( 800, 'Mirror Mirror',1 , 'FICTION',4,true);
 
 
 INSERT INTO ADDRESS_T (ID, LINE_ONE, CITY, POST_CODE, COUNTRY) VALUES (  1000,'43 Jenson street', 'Nottingham', 'NG6 5TY','UK' );

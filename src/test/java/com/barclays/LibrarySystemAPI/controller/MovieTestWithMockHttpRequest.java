@@ -3,6 +3,7 @@ package com.barclays.LibrarySystemAPI.controller;
 import com.barclays.LibrarySystemAPI.model.Genre;
 import com.barclays.LibrarySystemAPI.model.Movie;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
+@Slf4j
 class MovieTestWithMockHttpRequest {
 
     @Autowired
@@ -43,19 +45,22 @@ class MovieTestWithMockHttpRequest {
     @Test
     void searchMovieByTitle() throws Exception {
         int expectedLength = 1;
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movie/title?title= pulp fiction")
+        Long expectedId = 3300L;
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movie/title?title=Pulp fiction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
-        System.out.println("response content " +contentAsString);
+        log.debug("response content " +contentAsString);
         Movie[] movies =mapper.readValue(contentAsString, Movie[].class);
+        log.debug("movie length "+ movies.length);
 
         assertAll("Testing from a test-data.sql file",
-                () -> assertEquals(expectedLength, movies.length));
-              //  () -> assertEquals(3000, movies[0].getId()));
+                //() -> assertEquals(expectedLength, movies.length));
+                () -> assertEquals(expectedId, movies[0].getId()));
+
 
     }
 
@@ -92,7 +97,7 @@ class MovieTestWithMockHttpRequest {
 
         assertAll("Testing from a test-data.sql file",
                 () -> assertEquals(expectedLength, movies.length),
-                () -> assertEquals("The Godfather ", movies[1].getTitle()));
+                () -> assertEquals("The Godfather", movies[1].getTitle()));
 
 
 

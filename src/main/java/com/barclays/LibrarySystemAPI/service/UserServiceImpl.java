@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
       return user.orElseThrow(()->new IdNotFoundException("Id not found "));
    }
 
-
    @Override
    public User save(UserRequestDTO userDTO){
        Address address= new Address();

@@ -56,7 +56,7 @@ class BookServiceImplTest {
 
         String title = "Blah Blah sheep";
        List<Book>  expectedBook = Collections.singletonList(bookList.get(1)); //
-        when(bookRepository.findByTitleContainingIgnoreCase(title)).thenReturn(expectedBook);
+        when(bookRepository.findByTitle(title)).thenReturn(expectedBook);
         List<Book> actualBook = bookService.searchBookByTitle("Blah Blah sheep");
         assertEquals(expectedBook,actualBook);
     }

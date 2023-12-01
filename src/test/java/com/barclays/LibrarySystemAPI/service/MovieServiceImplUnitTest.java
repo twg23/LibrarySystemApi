@@ -43,20 +43,25 @@ class MovieServiceImplUnitTest {
 
 
         movieList = new ArrayList<>();
-        movieList.add(new Movie(1L, "Inception", "Leonardo DiCaprio, Ellen Page", "Christopher Nolan", "Christopher Nolan","2010-07-16", true , Genre.ROMANCE,8.8));
-        movieList.add(new Movie(2L, "The Shawshank Redemption", "Tim Robbins, Morgan Freeman", "Christopher Nolan", "Frank Darabont","1994-09-23", true ,Genre.ROMANCE,5));
-        movieList.add(new Movie(3L, "Pulp Fiction", "John Travolta, Uma Thurman", "CQuentin Tarantino", "Quentin Tarantino","2008-07-18", true ,  Genre.SCIENTIFIC,9.1));
-        movieList.add(new Movie(4L, "ISWIS", "Jola Ayeye, FK Abudu", "Tomi Agbaje", "Micheal Jackson","2012-07-15", true ,  Genre.FICTION,9.8));
+        movieList.add(new Movie(1L, "Inception", "Leonardo DiCaprio, Ellen Page", "Christopher Nolan", "Christopher Nolan","2010-07-16", true ,4, Genre.ROMANCE,8.8));
+        movieList.add(new Movie(2L, "The Shawshank Redemption", "Tim Robbins, Morgan Freeman", "Christopher Nolan", "Frank Darabont","1994-09-23", true ,5,Genre.ROMANCE,5));
+        movieList.add(new Movie(3L, "Pulp Fiction", "John Travolta, Uma Thurman", "CQuentin Tarantino", "Quentin Tarantino","2008-07-18", true , 6, Genre.SCIENTIFIC,9.1));
+        movieList.add(new Movie(4L, "ISWIS", "Jola Ayeye, FK Abudu", "Tomi Agbaje", "Micheal Jackson","2012-07-15", true , 6, Genre.FICTION,9.8));
     }
 
-//    @Test
-//   public void searchMovieByTitle() {
-//        String title = "Inception";
-//        Movie  expectedMovie = movieList.get(0);
-//        when(movieRepository.searchByTitle(title)).thenReturn(expectedMovie);
-//         Movie actualMovie = movieService.searchMovieByTitle("Inception");
-//         assertEquals(expectedMovie,actualMovie);
-//    }
+    @Test
+   public void searchMovieByTitle() {
+        String title = "Inception";
+
+        List<Movie> expectedMovie = movieList.stream()
+                .filter(movie -> "Inception".equals(movie.getTitle()))
+                .collect(Collectors.toList());
+
+        //Movie  expectedMovie = movieList.get(0);
+        when(movieRepository.searchByTitle(title)).thenReturn(expectedMovie);
+         List<Movie> actualMovie = movieService.searchMovieByTitle(title);
+         assertEquals(expectedMovie.get(0).getId(),actualMovie.get(0).getId());
+   }
 
     @Test
     void searchMovieByAuthorContaining() {
@@ -116,7 +121,7 @@ class MovieServiceImplUnitTest {
     @Test
    void  save(){
 
-        Movie movie1= new Movie(5L, "Moment with Toke", "Toke Makiwa", "Abimbola Oguns", "Abimbola Oguns","2023-07-15", true ,  Genre.FICTION,5);
+        Movie movie1= new Movie(5L, "Moment with Toke", "Toke Makiwa", "Abimbola Oguns", "Abimbola Oguns","2023-07-15", true ,5,  Genre.FICTION,5);
         when(movieRepository.save(movie1)).thenReturn(movie1);
         Movie savedMovie= movieService.save(movie1);
         assertEquals(movie1.getId(), savedMovie.getId());

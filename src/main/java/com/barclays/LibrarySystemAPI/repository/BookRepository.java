@@ -1,12 +1,9 @@
 package com.barclays.LibrarySystemAPI.repository;
 
-import com.barclays.LibrarySystemAPI.model.Author;
 import com.barclays.LibrarySystemAPI.model.Book;
 import com.barclays.LibrarySystemAPI.model.Genre;
-import com.barclays.LibrarySystemAPI.model.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,10 +11,10 @@ import java.util.List;
 public interface BookRepository extends CrudRepository<Book, Long> {
 
    @Query("SELECT new Book (b.id, b.title, b.author,b.genre, b.isAvailable) FROM Book b WHERE b.title LIKE %:title%")
-    List<Book> findByTitleContainingIgnoreCase( String title);
+    List<Book> findByTitle( String title);
 
 
-   // Book findBookByTitleIgnoreCase (String title);
+
     List<Book> findAll();
 
     List<Book> searchByAuthorNameContaining(String authorName);

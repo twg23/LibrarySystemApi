@@ -1,7 +1,6 @@
 package com.barclays.LibrarySystemAPI.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "book")
 @NoArgsConstructor
-public class Book {
+public class Book{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     @SequenceGenerator(
@@ -32,7 +31,8 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
-
+    @Column(name = "quantity")
+    private int quantity;
     private boolean isAvailable;
 
     public Book(Long id, String title, Author author, Genre genre, boolean isAvailable) {

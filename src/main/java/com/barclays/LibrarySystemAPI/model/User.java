@@ -1,5 +1,6 @@
 package com.barclays.LibrarySystemAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class User {
     private String phoneNumber;
     private String email;
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<ReservedItem> reservedItem;
 
     public User(String name) {

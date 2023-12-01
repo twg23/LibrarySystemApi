@@ -33,10 +33,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> searchMovieByGenre(Genre genre){
-
         return  movieRepository.searchMovieByGenre(genre);
-
-
     }
 
     @Override
@@ -44,7 +41,6 @@ public class MovieServiceImpl implements MovieService {
         List<Movie> movies = new ArrayList<>();
         Iterable<Movie> moviesIts = movieRepository.findAll();
         moviesIts.forEach(movies::add);
-
         return movies;
     }
 
@@ -52,7 +48,6 @@ public class MovieServiceImpl implements MovieService {
     public Movie save(Movie movie){
         return movieRepository.save(movie);
     }
-
 
     @Override
     public void  deleteMovie(Long id){

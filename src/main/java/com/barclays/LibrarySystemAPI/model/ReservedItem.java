@@ -1,5 +1,6 @@
 package com.barclays.LibrarySystemAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,12 +25,10 @@ public class ReservedItem {
     private Long id;
     @Enumerated(EnumType.STRING)
     ItemType  itemType;
-    @OneToOne
-    @JoinColumn(name ="item_id", referencedColumnName = "id",nullable = false )
-    private Item item;
     private String date;
     private int period;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name ="user_id", referencedColumnName = "id",nullable = false )
    private User user;
 

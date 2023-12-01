@@ -38,7 +38,7 @@ class BookTestWithMockHttpRequest {
     @Test
     void searchBookByTitle() throws Exception {
         Long expectedBookId = 600L;
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/book/title?title=Blah Blah sheep")
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/book?title=Blah Blah sheep")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -46,10 +46,10 @@ class BookTestWithMockHttpRequest {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
         System.out.println("response content " +contentAsString);
-        Book actualBook =mapper.readValue(contentAsString, Book.class);
+        Book[] actualBook =mapper.readValue(contentAsString, Book[].class);
 
         assertAll("Testing from a test-data.sql file",
-                () -> assertEquals(expectedBookId, actualBook.getId()));
+                () -> assertEquals(expectedBookId, actualBook[0].getId()));
     }
 
     @Test

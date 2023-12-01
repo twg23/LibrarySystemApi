@@ -3,13 +3,12 @@ package com.barclays.LibrarySystemAPI.controller;
 import com.barclays.LibrarySystemAPI.model.Book;
 import com.barclays.LibrarySystemAPI.model.Genre;
 import com.barclays.LibrarySystemAPI.service.BookService;
-import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Locale;
+
 
 @RestController
 @Slf4j
@@ -23,12 +22,6 @@ public class BookController {
         return bookService.searchBookByTitle(title);
     }
 
-//        @GetMapping("/book")
-//   // public Book searchBookByTitle(@RequestParam("title") String title){
-//    public  Book searchBookByTitle(@RequestParam("title") String title){
-//        title=  title.substring(0,1).toUpperCase() + title.substring(1);
-//        return bookService.searchBookByTitle(title);
-//    }
 
     @GetMapping("/books")
     public List<Book> findAllBooks(){

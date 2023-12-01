@@ -1,1 +1,0 @@
-ALTER TABLE USER_T RENAME COLUMN phoneNumber TO phone_number;

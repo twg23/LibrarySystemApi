@@ -28,6 +28,7 @@ public class Movie {
     private String screenWriter;
     private String releaseDate;
     private boolean isAvailable;
+    private int quantity;
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
