@@ -8,6 +8,8 @@ import com.barclays.LibrarySystemAPI.repository.BookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -29,7 +31,7 @@ class BookServiceImplTest {
     Book book;
     Author author;
 
-    @Autowired
+    @InjectMocks
     BookServiceImpl bookService;
     @MockBean
     BookRepository bookRepository;
@@ -38,7 +40,7 @@ class BookServiceImplTest {
 
     @BeforeEach
     void setUp() {
-
+        MockitoAnnotations.initMocks(this);
         Author author= new Author("Wole Soyinka");
        Author author1 = new Author("Tolani Shoneye");
 

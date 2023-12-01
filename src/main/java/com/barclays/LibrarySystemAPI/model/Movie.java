@@ -29,7 +29,6 @@ public class Movie {
     private String releaseDate;
     private boolean isAvailable;
     private int quantity;
-
     @Enumerated(EnumType.STRING)
     private Genre genre;
     private double rating;

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,9 +28,8 @@ import static org.mockito.Mockito.when;
 class MovieServiceImplUnitTest {
 
 
-    Movie movie;
 
-    @Autowired
+    @InjectMocks
     MovieServiceImpl movieService;
 
     @MockBean
@@ -40,7 +40,7 @@ class MovieServiceImplUnitTest {
     @BeforeEach
     void setUp() {
 
-
+        MockitoAnnotations.initMocks(this);
 
         movieList = new ArrayList<>();
         movieList.add(new Movie(1L, "Inception", "Leonardo DiCaprio, Ellen Page", "Christopher Nolan", "Christopher Nolan","2010-07-16", true ,4, Genre.ROMANCE,8.8));
