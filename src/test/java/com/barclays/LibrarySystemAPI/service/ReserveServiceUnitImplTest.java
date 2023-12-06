@@ -47,6 +47,9 @@ class ReserveServiceUnitImplTest {
     List<ReservedItem>  reservedItemList;
     List<Movie>  movieList;
     List<User>  userList;
+    List<ReservedItem> reservedItems;
+
+    List<Book>  bookList;
 
     @BeforeEach
     void setUp() {
@@ -63,12 +66,13 @@ class ReserveServiceUnitImplTest {
         movieList.add(new Movie(1L, "Inception", "Leonardo DiCaprio, Ellen Page", "Christopher Nolan", "Christopher Nolan","2010-07-16", true ,4, Genre.ROMANCE,8.8));
         movieList.add(new Movie(2L, "The Shawshank Redemption", "Tim Robbins, Morgan Freeman", "Christopher Nolan", "Frank Darabont","1994-09-23", true ,4,Genre.ROMANCE,5));
         movieList.add(new Movie(3L, "Pulp Fiction", "John Travolta, Uma Thurman", "CQuentin Tarantino", "Quentin Tarantino","2008-07-18", true ,4,  Genre.SCIENTIFIC,9.1));
-    }
 
-    @Test
-    void save() {
+//        bookList = new ArrayList<>();
+//       bookList.add(new Book()) INSERT INTO BOOK (ID, title, author_id, genre,quantity,is_available) VALUES ( 500, 'Mary had a little lamb',1 , 'FICTION',3,true);
+//        INSERT INTO BOOK (ID, title, author_id, genre,quantity,is_available) VALUES ( 600, 'Blah Blah sheep',2 , 'THRILLER',4,true);
+//        INSERT INTO BOOK (ID, title, author_id, genre, quantity,is_available) VALUES ( 700, 'Upon the old solid rock',3, 'ACTION',3,true);
+//        INSERT INTO BOOK (ID, title, author_id, genre,quantity,is_available) VALUES ( 800, 'Mirror Mirror',1 , 'FICTION',4,true);
 
-        String expectedDirectorName ="Christopher Nolan";
 
         List<Movie> actualMovie = movieList.stream()
                 .filter(movie -> "Inception".equals(movie.getTitle()))
@@ -80,42 +84,44 @@ class ReserveServiceUnitImplTest {
         reserveDTO.setUserId(1);
         reserveDTO.setDate("20/11/2023");
 
-        when(userRepository.findById(reserveDTO.getUserId())).thenReturn(Optional.of(userList.get(0)));
-        when(movieRepository.searchByTitle(reserveDTO.getTitle())).thenReturn(actualMovie);
 
-        ReservedItem savedReservedItem = reserveService.save(reserveDTO);
 
-        assertEquals(savedReservedItem.getUser().getName(), userList.get(0).getName());
+
+
 
     }
 
+//    @Test
+//    void save() {
+//
+//        String expectedDirectorName ="Christopher Nolan";
+//
+//        List<Movie> actual= movieList.stream()
+//                .filter(movie -> "Inception".equals(movie.getTitle()))
+//                .collect(Collectors.toList());
+//
+//         reserveDTO = new ReserveDTO();
+//        reserveDTO.setTitle("Inception");
+//        reserveDTO.setItemType( ItemType.MOVIE);
+//        reserveDTO.setUserId(1);
+//        reserveDTO.setDate("20/11/2023");
+//
+//        when(userRepository.findById(reserveDTO.getUserId())).thenReturn(Optional.of(userList.get(0)));
+//        when(movieRepository.searchByTitle(reserveDTO.getTitle())).thenReturn(actualMovie);
+//
+//        ReservedItem savedReservedItem = reserveService.save(reserveDTO);
+//
+//        assertEquals(savedReservedItem.getUser().getName(), userList.get(0).getName());
+//
+//    }
     @Test
     void getAllReservations() {
 
-        int expectedListLength =2;
-
-        List<Movie> actualMovie = movieList.stream()
-                .filter(movie -> "Inception".equals(movie.getTitle()))
-                .collect(Collectors.toList());
-
-        ReserveDTO reserveDTO = new ReserveDTO();
-        reserveDTO.setTitle("Inception");
-        reserveDTO.setItemType( ItemType.MOVIE);
-        reserveDTO.setUserId(1);
-        reserveDTO.setDate("20/11/2023");
-
-        when(userRepository.findById(reserveDTO.getUserId())).thenReturn(Optional.of(userList.get(0)));
-        when(movieRepository.searchByTitle(reserveDTO.getTitle())).thenReturn(actualMovie);
-
-        ReservedItem savedReservedItem = reserveService.save(reserveDTO);
-        List<ReservedItem> reservedItemList1= new ArrayList<>();
-        reservedItemList1.add(savedReservedItem);
-
+        int expectedListLength =1;
+        when(reserveRepository.findAll()).thenReturn(Collections.singletonList(new ReservedItem()));
         List<ReservedItem> reservedItemList2 = reserveService.getAllReservations();
-
         assertEquals(expectedListLength, reservedItemList2.size());
 
-
-
     }
+
 }

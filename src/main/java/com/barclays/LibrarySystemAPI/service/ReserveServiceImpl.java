@@ -2,15 +2,13 @@ package com.barclays.LibrarySystemAPI.service;
 
 import com.barclays.LibrarySystemAPI.dto.ReserveDTO;
 import com.barclays.LibrarySystemAPI.exception.IdNotFoundException;
-import com.barclays.LibrarySystemAPI.exception.ItemNotFoundException;
 import com.barclays.LibrarySystemAPI.model.*;
 import com.barclays.LibrarySystemAPI.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.ArrayList;
 import java.util.List;

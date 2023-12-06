@@ -3,6 +3,7 @@ package com.barclays.LibrarySystemAPI.service;
 import com.barclays.LibrarySystemAPI.dto.ReserveDTO;
 import com.barclays.LibrarySystemAPI.exception.IdNotFoundException;
 import com.barclays.LibrarySystemAPI.exception.ItemNotFoundException;
+import com.barclays.LibrarySystemAPI.exception.OutOfQuantityException;
 import com.barclays.LibrarySystemAPI.model.*;
 import com.barclays.LibrarySystemAPI.repository.MovieRepository;
 import com.barclays.LibrarySystemAPI.repository.ReservationStrategy;
@@ -33,7 +34,8 @@ public class MovieReservationStrategy implements ReservationStrategy {
             if (movies.isEmpty()) throw new ItemNotFoundException("Item not found");
 
             if (!(movies.get(0).getQuantity()>0)){
-                throw new ResponseStatusException(HttpStatusCode.valueOf(422),"Item not available");
+                //throw new ResponseStatusException(HttpStatusCode.valueOf(422),"Item not available");
+                throw new OutOfQuantityException("This Movie is out of Quantity in the Library");
             }
             else {
                 movies.get(0).setQuantity((movies.get(0).getQuantity())-1);
