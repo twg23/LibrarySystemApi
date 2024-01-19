@@ -5,6 +5,7 @@ import com.barclays.LibrarySystemAPI.exception.IdNotFoundException;
 import com.barclays.LibrarySystemAPI.model.*;
 import com.barclays.LibrarySystemAPI.repository.*;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,34 +15,29 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 @Slf4j
+@AllArgsConstructor
 public class ReserveServiceImpl implements ReserveService {
 
      UserRepository userRepository;
-     BookRepository bookRepository;
-     MovieRepository movieRepository;
      ReserveRepository reserveRepository;
-
-     PeriodicalRepository periodicalRepository;
-
      ReservationStrategy reservationStrategy;
-
-
-    List<Book> books= new ArrayList<>();
-
-
-
+     MovieReservationStrategy movieReservationStrategy;
+     BookReservationStrategy bookReservationStrategy;
+     List<Book> books= new ArrayList<>();
 
     @Transactional
     @Override
     public ReservedItem save (ReserveDTO reserveDTO){
-
-
         if(reserveDTO.getItemType().equals(ItemType.MOVIE)) {
-            reservationStrategy =new MovieReservationStrategy();
+          //  reservationStrategy =new MovieReservationStrategy();
+
+            reservationStrategy=movieReservationStrategy;
         }
 
-        if (reserveDTO.getItemType().equals(ItemType.MOVIE) ) {
-            reservationStrategy = new BookReservationStrategy();
+        if (reserveDTO.getItemType().equals(ItemType.BOOK) ) {
+          //  reservationStrategy = new BookReservationStrategy();
+
+            reservationStrategy=bookReservationStrategy;
         }
 
         reservationStrategy.reserve(reserveDTO);
@@ -57,7 +53,6 @@ public class ReserveServiceImpl implements ReserveService {
         reservedItem.setUser(user);
 
         return reserveRepository.save(reservedItem);
-
     }
 
     @Override
@@ -69,15 +64,6 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
 
-    @Autowired
-    public ReserveServiceImpl(UserRepository userRepository, BookRepository bookRepository, MovieRepository movieRepository, ReserveRepository reserveRepository, PeriodicalRepository periodicalRepository, ReservationStrategy reservationStrategy, List<Book> books) {
-        this.userRepository = userRepository;
-        this.bookRepository = bookRepository;
-        this.movieRepository = movieRepository;
-        this.reserveRepository = reserveRepository;
-        this.periodicalRepository = periodicalRepository;
-        this.reservationStrategy = reservationStrategy;
-        this.books = books;
-    }
+
 }
 
