@@ -1,8 +1,0 @@
-CREATE TABLE IF NOT EXISTS ADDRESS_T
-(
-    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    line_one VARCHAR(255),
-    city VARCHAR(1000),
-    post_code VARCHAR(1000),
-    country VARCHAR(1000)
-    );

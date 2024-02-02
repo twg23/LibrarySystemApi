@@ -1,3 +1,0 @@
-INSERT INTO USER_T (ID, NAME, PHONE_NUMBER,EMAIL) VALUES ( NEXTVAL('user_t_seq'),'Tolu Adetomiwa','07347284950', 'toluadetomiwa@gmail.com' );
-INSERT INTO USER_T (ID, NAME, PHONE_NUMBER,EMAIL) VALUES ( NEXTVAL('user_t_seq'),'Tise Oludayomi','07347583840', 'tiseoludayomi@gmail.com' );
-INSERT INTO USER_T (ID, NAME, PHONE_NUMBER,EMAIL) VALUES ( NEXTVAL('user_t_seq'),'Dami Bankole','07347254780', 'damibankole@gmail.com' );

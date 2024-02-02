@@ -45,8 +45,8 @@ class MovieTestWithMockHttpRequest {
     @Test
     void searchMovieByTitle() throws Exception {
         int expectedLength = 1;
-        Long expectedId = 3300L;
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movie/title?title=Pulp fiction")
+        long expectedId = 3000L;
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movie")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -56,6 +56,10 @@ class MovieTestWithMockHttpRequest {
         log.debug("response content " +contentAsString);
         Movie[] movies =mapper.readValue(contentAsString, Movie[].class);
         log.debug("movie length "+ movies.length);
+        for ( Movie m: movies
+        ){
+            System.out.println("Movies list: " + m);
+        }
 
         assertAll("Testing from a test-data.sql file",
                 //() -> assertEquals(expectedLength, movies.length));

@@ -2,9 +2,7 @@ package com.barclays.LibrarySystemAPI.controller;
 
 import com.barclays.LibrarySystemAPI.dto.ReserveDTO;
 import com.barclays.LibrarySystemAPI.model.ReservedItem;
-import com.barclays.LibrarySystemAPI.model.User;
 import com.barclays.LibrarySystemAPI.service.ReserveService;
-import com.barclays.LibrarySystemAPI.service.ReserveServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

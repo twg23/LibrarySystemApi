@@ -23,7 +23,7 @@ public class Movie {
     )
     private  Long id;
     private String title;
-   private String leadActors;
+    private String leadActors;
     private String director;
     private String screenWriter;
     private String releaseDate;
